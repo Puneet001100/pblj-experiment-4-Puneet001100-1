@@ -1,0 +1,171 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Employee {
+    private int id;
+    private String name;
+    private double salary;
+
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee ID: " + id + ", Name: " + name + ", Salary: " + salary;
+    }
+}
+
+public class EmployeeManagement {
+    private ArrayList<Employee> employees = new ArrayList<>();
+
+    public void addEmployee(int id, String name, double salary) {
+        employees.add(new Employee(id, name, salary));
+    }
+
+    public void updateEmployee(int id, String name, double salary) {
+        for (Employee emp : employees) {
+            if (emp.getId() == id) {
+                emp.setName(name);
+                emp.setSalary(salary);
+                return;
+            }
+        }
+        System.out.println("Employee not found.");
+    }
+
+    public void removeEmployee(int id) {
+        employees.removeIf(emp -> emp.getId() == id);
+    }
+
+    public void searchEmployee(int id) {
+        for (Employee emp : employees) {
+            if (emp.getId() == id) {
+                System.out.println(emp);
+                return;
+            }
+        }
+        System.out.println("Employee not found.");
+    }
+
+    public void displayEmployees() {
+        for (Employee emp : employees) {
+            System.out.println(emp);
+        }
+    }
+
+    public static void main(String[] args) {
+        EmployeeManagement management = new EmployeeManagement();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n1. Add Employee");
+            System.out.println("2. Update Employee");
+            System.out.println("3. Remove Employee");
+            System.out.println("4. Search Employee");
+            System.out.println("5. Display All Employees");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id = scanner.nextInt();
+                    System.out.print("Enter Name: ");
+                    String name = scanner.next();
+                    System.out.print("Enter Salary: ");
+                    double salary = scanner.nextDouble();
+                    management.addEmployee(id, name, salary);
+                    break;
+                case 2:
+                    System.out.print("Enter ID of employee to update: ");
+                    id = scanner.nextInt();
+                    System.out.print("Enter new Name: ");
+                    name = scanner.next();
+                    System.out.print("Enter new Salary: ");
+                    salary = scanner.nextDouble();
+                    management.updateEmployee(id, name, salary);
+                    break;
+                case 3:
+                    System.out.print("Enter ID of employee to remove: ");
+                    id = scanner.nextInt();
+                    management.removeEmployee(id);
+                    break;
+                case 4:
+                    System.out.print("Enter ID of employee to search: ");
+                    id = scanner.nextInt();
+                    management.searchEmployee(id);
+                    break;
+                case 5:
+                    management.displayEmployees();
+                    break;
+                case 6:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 6);
+
+        scanner.close();
+    }
+}
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+class Card {
+    private String symbol;
+    private String value;
+
+    public Card(String symbol, String value) {
+        this.symbol = symbol;
+        this.value = value;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" + "symbol='" + symbol + '\'' + ", value='" + value + '\'' + '}';
+    }
+}
+
+2. public class CardCollection {
+    private Map<String, List<Card>> cardMap = new HashMap<>();
+
+    public void addCard(String symbol, String value) {
+        Card card
